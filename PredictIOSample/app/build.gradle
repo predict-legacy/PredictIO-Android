@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'alias'
+            keyPassword 'predictio'
+            storeFile file('piokeystore.jks')
+            storePassword 'predictio'
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
+    defaultConfig {
+        applicationId "io.predict.sample"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+repositories {
+    maven { url 'https://dl.bintray.com/predict-io/maven/' }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.google.android.gms:play-services-location:9.0.1'
+    compile 'com.google.android.gms:play-services-base:9.0.1'
+    //Google EasyPermissions Lib, Ref: https://github.com/googlesamples/easypermissions
+    compile 'pub.devrel:easypermissions:0.1.5'
+    compile 'io.predict:predict-io:3.0.0'
+}
