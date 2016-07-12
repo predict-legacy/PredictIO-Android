@@ -3,42 +3,44 @@
 ## Introduction
 The predict.io API (patent pending) allows you to retrieve real-time updates on the departure and arrival status of a user. You can run the API in apps designed for Android and iOS devices. No additional in-car hardware is required. http://www.predict.io 
 
-###### Main features include detecting when a user..
+Main features include detecting when a user..  
 ...is searching for parking (BETA),   
 ...has arrived,  
 ...has departed a parking spot,  
 ...is about to depart a parking spot (Under-Development),  
 ...is using a specific mode of transportation (BETA).
 
-You may use the departure updates to trigger events or notifications specific to your use case. The departure detection service stack leverages all available phone sensors. Sensor usage is extremely battery optimized. Incremental battery consumption does not exceed 10% in typical cases. Also we strongly suggest you ensure inclusion of LBS in your T&C and Privacy Policies. By using this API you explicitly agree to our license agreement, terms and conditions and privacy policy. If you are unsure about any item, please contact us at [support@parktag.mobi]()
+You may use the departure updates to trigger events or notifications specific to your use case. The departure detection service stack leverages all available phone sensors. Sensor usage is extremely battery optimized. Incremental battery consumption does not exceed 10% in typical cases. Also we strongly suggest you ensure inclusion of LBS in your T&C and Privacy Policies. By using this API you explicitly agree to our license agreement, terms and conditions and privacy policy. If you are unsure about any item, please contact us at [Support Center](http://www.predict.io/support-center/)
 
 We wish you great enjoyment with this API and welcome any feedback you might have for us. 
 Your PredictIO Dev Team,
 
 ## Sample Project:
-Sample project is also attached in zip package, just add your sdk key in manifest file of project and run the project for quick demo.
+Add your sdk api key in manifest file of project and run the project for quick demo.
 
 ## Integration Steps
 Please follow these steps in order to integrate PredictIO SDK in your project.
 
-- Copy provided PredictIO SDK JAR to your app's libs folder  
-- Open the build.gradle file inside your application module directory and add following lines under relevant tags  
-```
-android
-{...
-useLibrary  'org.apache.http.legacy'
-}
-dependencies
-{...
-compile  fileTree(dir: 'libs', include: ['*.jar'])
-compile 'com.google.android.gms:play-services-location:9.0.1'
-compile 'com.google.android.gms:play-services-base:9.0.1'
+In order to use the library (Gradle dependency)
+- Add the following to your project level build.gradle:
+```gradle 
+allprojects {
+    repositories {
+        maven { url 'https://dl.bintray.com/predict-io/maven/' }
+    }
 }
 ```
-
+- Add this to your app build.gradle:
+```gradle
+dependencies {
+    compile 'com.google.android.gms:play-services-location:9.0.1'
+    compile 'com.google.android.gms:play-services-base:9.0.1'
+    compile 'io.predict:predict-io:3.0.0'
+}
+```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 9.0.1, otherwise there is a high possibility of getting errors.
 
-- Now create a class that implements the interface mobi.parktag.sdk.PredictIOInterface (Preferably Application class), this interface includes following methods:  
+- Now create a class that implements the interface io.predict.PredictIOInterface (Preferably Application class), this interface includes following methods:  
 ```java 
 public void departedLocation(Location departureLocation, long departureTime, TransportMode transportMode) 
 ```
@@ -64,7 +66,7 @@ This method is invoked when PredictIO receives new location from its location pr
 public void activationFailed(int errorCode)
 ```
 This method is called when there is any failure in activation of PredictIO
-- Once this is done Override the onCreate() Method of Application class and pass the implementation of mobi.parktag.sdk.PredictIOInterface interface to PredictIO Sdk using following method:  
+- Once this is done Override the onCreate() Method of Application class and pass the implementation of io.predict.PredictIOInterface interface to PredictIO Sdk using following method:  
 ```java 
  public class YOUR_APPLICATION_CLASS extends Application {
 
@@ -84,33 +86,45 @@ This method is called when there is any failure in activation of PredictIO
 ```
 - Add following tags in **AndroidManifest.xml**  
 
-YOUR_API_KEY provided with meta-data tag  
+**YOUR_API_KEY** provided with meta-data tag  
 ```xml 
-<meta-data android:name="mobi.parktag.sdk.api.key" android:value="YOUR_API_KEY" />
+<meta-data
+            android:name="io.predict.sdk.API_KEY"
+            android:value="YOUR_API_KEY" />
 ```
 Google Play services version under Application tag in manifest i.e.
 ```xml 
-<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+<meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 ```
 Permission tags
 ```xml
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 Service tags
 ```xml 
-<service android:name="mobi.parktag.sdk.detection.services.ParktagCellManager" android:exported="false" />
-<service android:name="mobi.parktag.sdk.detection.services.ParktagService" android:exported="false" />
-<service android:name="mobi.parktag.sdk.detection.services.ParktagLocationManager" android:exported="false" />
-<service android:name="mobi.parktag.sdk.detection.services.ParktagComService" android:exported="false" />
+ 		<service
+            android:name="io.predict.sdk.detection.services.PIOMainService"
+            android:exported="false" />
+        <service
+            android:name="io.predict.sdk.detection.services.PIOUtilService"
+            android:exported="false" />
+        <service
+            android:name="io.predict.sdk.detection.services.PIOLocationService"
+            android:exported="false" />
+        <service
+            android:name="io.predict.sdk.detection.services.PIOComService"
+            android:exported="false" />
 ```
 Receiver tags
 ```xml
-<receiver android:name="mobi.parktag.sdk.detection.recievers.ParktagReceiver" >
+<receiver android:name="io.predict.sdk.detection.receivers.PIOReceiver">
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED" />
         <action android:name="android.intent.action.AIRPLANE_MODE" />
@@ -126,39 +140,10 @@ Receiver tags
     </intent-filter>
 </receiver>
 ```
-- Incase you are using ProGuard, add following lines in your ProGuard config file in order to prevent ProGuard from stripping away required classes.
+- Incase you are using ProGuard, add following line in your ProGuard config file in order to prevent ProGuard from stripping away required classes.
 ```
-###### For PredictIO SDK ######
--keep public class mobi.parktag.sdk.**{*;}
-
-###### For Google Play Services ######
--keep class * extends java.util.ListResourceBundle {
-protected Object[][] getContents();
-}
-
--keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
-public static final *** NULL;
-}
-
--keepnames @com.google.android.gms.common.annotation.KeepName class *
--keepclassmembernames class * {
-@com.google.android.gms.common.annotation.KeepName *;
-}
-
--keepnames class * implements android.os.Parcelable {
-    public static final ** CREATOR;
-}
-
--keep public class com.google.android.gms.* { public *; }
--dontwarn com.google.android.gms.**
-
-############## Rules needed for Apache HTTP Client  ##############
--keepnames class org.apache.** {*;}
--keep public class org.apache.** {*;}
--dontwarn org.apache.commons.logging.LogFactory
--dontwarn org.apache.http.annotation.ThreadSafe
--dontwarn org.apache.http.annotation.Immutable
--dontwarn org.apache.http.annotation.NotThreadSafe
+##### For PredictIO SDK ######
+-keep public class io.predict.**{*;}
 ```
 That's it! Congratulations, you have successfully integrated PredictIO Sdk with your app.
 Now you just need to start and stop PredictIO tracker by using following methods accordingly
@@ -182,7 +167,12 @@ PredictIO.getInstance(context).stop();
   - PredictIO tracker needs Locations access to get started. It is developer's responsibility to prompt the user to grant "Location" permission before starting the Tracker.
   - Since users can revoke "Location" permission at any time from the app Settings screen, note that this will also disable Tracker as well.
   - Please note, if user re-grants the same permission again from the app Settings, this will not automatically enable the Tracker.
-  - PredictIO Sdk is using 'Appache HTTP Client' and as marshmallow removes support for it, you need to add it's library declaration (with relevant proguarding rules) in your apps's gradle file. Ref: [Apache HTTP Client Removal](https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html?hl=es#behavior-apache-http-client)
+  - **Note:** PredictIO Sdk is using 'Appache HTTP Client' and as marshmallow removes support for it, if you are having trouble with it, you need to add it's library declaration (with relevant proguarding rules) in your apps's gradle file. Ref: [Apache HTTP Client Removal](https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html?hl=es#behavior-apache-http-client)
+```gradle
+android {
+   	useLibrary  'org.apache.http.legacy'
+}
+```
 - For apps having target api level less than 23.  
   - Tracker will run normally for all devices having OS less than 23.
   - For marshmallow and above devices, all permissions will be granted by default and tracker will run normally too.
@@ -196,7 +186,7 @@ PredictIO.getInstance(context).stop();
 ```jave
 predictIO.setAppOnCreate(this);
 ```
-- In version 2.1.0 we added new sdk event method i-e "arrivalSuspectedFromLocation", introduced multiclass vehicle detection (transport mode) and added wifi state change filter ("android.net.wifi.STATE_CHANGE") in ParktagReceiver receiver.  
+- In version 2.1.0 we added new sdk event method i-e "arrivalSuspectedFromLocation", introduced multiclass vehicle detection (transport mode) and added wifi state change filter ("android.net.wifi.STATE_CHANGE") in PIOReceiver receiver.  
 
 ## Methods
 ```java
