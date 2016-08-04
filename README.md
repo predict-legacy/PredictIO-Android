@@ -26,24 +26,22 @@ Look through the [Use Cases](https://github.com/predict-io/predict-io-android/wi
 ## Installation
 ### Using Gradle 
 
-In order to use the library (Gradle dependency). check the [Gradle integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
+In order to use the library (Gradle dependency), check the [Gradle integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
 
 ### Manual
 You can manually integrate predict.io to your project, check the [Manual integration](https://github.com/predict-io/predict-io-android/wiki/Manual-integration-Guide) of predict.io guide for more details.
 
 ## API Documentation
-For a complete reference of the API, please check out our API documentation and usage guide.
-* [Methods & Callbacks Guide](https://github.com/predict-io/predict-io-android/wiki/Methods-&-Callbacks-Guide)
+For a complete reference of the API, please check out our [API documentation and usage guide](https://github.com/predict-io/predict-io-android/wiki/Methods-&-Callbacks-Guide).  
 
 ## Migration Guide
-If you are upgrading from the ParkTAG SDK v2.2.0 or lower. Please make sure that you update your integration code, so it conforms with the 3.0.0 release. Checkout the appropriate guide for more details.
-* [Migration Guide](https://github.com/predict-io/predict-io-android/wiki/Migration-Guide-to-predict.io-3.0)
+If you are upgrading from the ParkTAG SDK v2.2.0 or lower. Please make sure that you update your integration code, so it conforms with the 3.0.0 release. Checkout the [Migration guide](https://github.com/predict-io/predict-io-android/wiki/Migration-Guide-to-predict.io-3.0) for more details.
 
 ## FAQ
 Look through the [FAQ](https://github.com/predict-io/predict-io-android/wiki/FAQ) for answers to the most commonly-asked questions about predict.io.
 
 ## Communication 
-* If you need help, use: [Support Center] (http://www.predict.io/support-center/)
+If you need help, use: [Support Center] (http://www.predict.io/support-center/)
 
 ## Author
 predict.io, support@predict.io
