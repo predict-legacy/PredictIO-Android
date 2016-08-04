@@ -4,7 +4,7 @@ predict.io offers mobile developers a battery-optimized SDK to get normalized se
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
 ## Sample Project
-Add your sdk api key in manifest file of sample project and run the project for quick demo.
+Add your SDK API key in manifest file of sample project and run the project for quick demo.
 
 ## Features
 ##### Arrival 
@@ -26,17 +26,17 @@ Look through the [Use Cases](https://github.com/predict-io/predict-io-android/wi
 ## Installation
 ### Using Gradle 
 
-In order to use the library (Gradle dependency). check the [Integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
+In order to use the library (Gradle dependency). check the [Gradle integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
 
 ### Manual
 You can manually integrate predict.io to your project, check the [Manual integration](https://github.com/predict-io/predict-io-android/wiki/Manual-integration-Guide) of predict.io guide for more details.
 
 ## API Documentation
-For a complete reference of the API, please check out our API documentation and usage guides for your preferred language.
+For a complete reference of the API, please check out our API documentation and usage guide.
 * [Methods & Callbacks Guide](https://github.com/predict-io/predict-io-android/wiki/Methods-&-Callbacks-Guide)
 
 ## Migration Guide
-If you are upgrading from the ParkTAG SDK v2.2.0 or lower. Please make sure that you update your integration code, so it conforms with the 3.0+ releases. Checkout the appropriate guide for more details.
+If you are upgrading from the ParkTAG SDK v2.2.0 or lower. Please make sure that you update your integration code, so it conforms with the 3.0.0 release. Checkout the appropriate guide for more details.
 * [Migration Guide](https://github.com/predict-io/predict-io-android/wiki/Migration-Guide-to-predict.io-3.0)
 
 ## FAQ
