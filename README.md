@@ -3,9 +3,6 @@ predict.io offers mobile developers a battery-optimized SDK to get normalized se
 
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
-## Sample Project
-Add your SDK API key in manifest file of sample project and run the project for quick demo.
-
 ## Features
 ##### Arrival 
 Detects that a user just arrived at the destination. 
@@ -25,17 +22,19 @@ Look through the [Use Cases](https://github.com/predict-io/predict-io-android/wi
 
 ## Installation
 ### Using Gradle 
+Gradle is a dependency manager for Android projects, check the [Gradle integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
 
-In order to use the library (Gradle dependency), check the [Gradle integration](https://github.com/predict-io/predict-io-android/wiki/Integration-Guide) of predict.io guide for more details.
+### If not using Gradle
+If you don't use Gradle, you can manually add predict.io lib to your Android project, check the [Manual integration](https://github.com/predict-io/predict-io-android/wiki/Manual-integration-Guide) of predict.io guide for more details.
 
-### Manual
-You can manually integrate predict.io to your project, check the [Manual integration](https://github.com/predict-io/predict-io-android/wiki/Manual-integration-Guide) of predict.io guide for more details.
+### Example
+Add your SDK API key in manifest file of sample project and run the project for quick demo.
 
 ## API Documentation
 For a complete reference of the API, please check out our [API documentation and usage guide](https://github.com/predict-io/predict-io-android/wiki/Methods-&-Callbacks-Guide).  
 
 ## Migration Guide
-If you are upgrading from the ParkTAG SDK v2.2.0 or lower. Please make sure that you update your integration code, so it conforms with the 3.0.0 release. Checkout the [Migration guide](https://github.com/predict-io/predict-io-android/wiki/Migration-Guide-to-predict.io-3.0) for more details.
+If you are upgrading from the ParkTAG SDK v2.2 or lower, please make sure that you update your integration code, so it conforms with the 3.0+ releases. Checkout the [Migration guide](https://github.com/predict-io/predict-io-android/wiki/Migration-Guide-to-predict.io-3.0) for more details.
 
 ## FAQ
 Look through the [FAQ](https://github.com/predict-io/predict-io-android/wiki/FAQ) for answers to the most commonly-asked questions about predict.io.
