@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'alias'
+            keyAlias 'predictio'
             keyPassword 'predictio'
-            storeFile file('piokeystore.jks')
+            storeFile file('predictiokeystore.jks')
             storePassword 'predictio'
         }
     }
