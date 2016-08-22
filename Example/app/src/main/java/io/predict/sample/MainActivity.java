@@ -14,7 +14,10 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.List;
 
+import io.predict.PrecisionMode;
 import io.predict.PredictIO;
+import io.predict.PredictIOStatus;
+import io.predict.sample.common.MainUtils;
 import io.predict.sample.common.PermissionUtils;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -50,13 +53,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PredictIO.getInstance(getApplication()).stop();
                 break;
             case R.id.tracker_status:
-                if (PredictIO.getInstance(this).isTrackerRunning()) {
-                    Toast.makeText(this, "PredictIO tracker is in running state."
-                            , Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "PredictIO tracker is not in running state."
-                            , Toast.LENGTH_LONG).show();
+                String message;
+                switch (PredictIO.getInstance(getApplication()).getStatus()) {
+                    case ACTIVE:
+                        message = "'predict.io' tracker is in working state.";
+                        break;
+                    case LOCATION_DISABLED:
+                        message = "'predict.io' tracker is not in running state. GPS is disabled.";
+                        break;
+                    case AIRPLANE_MODE_ENABLED:
+                        message = "'predict.io' tracker is not in running state. Airplane mode is enabled.";
+                        break;
+                    case INSUFFICIENT_PERMISSION:
+                        message = "'predict.io' tracker is not in running state. Location permission is not granted.";
+                        break;
+                    default:
+                    case IN_ACTIVE:
+                        message = "'predict.io' tracker is in in-active state.";
+                        break;
                 }
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -66,16 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Get PredictIO instance
         final PredictIO predictIO = PredictIO.getInstance(getApplication());
         //Set modes
-        predictIO.enableFullPrecision(true);
+        predictIO.setPrecision(PrecisionMode.HIGH);
         predictIO.enableSearchingInPerimeter(true);
 
         //Validate tracker not already running
-        if (predictIO.isTrackerRunning()) {
+        if (predictIO.getStatus() == PredictIOStatus.ACTIVE) {
             return;
         }
 
         //Validate google play services
-        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        final GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
@@ -101,7 +117,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //All validations cleared, start tracker
         try {
             //noinspection ResourceType
-            predictIO.start();
+            predictIO.start(new PredictIO.PIOActivationListener() {
+                @Override
+                public void onActivated() {
+                    MainUtils.notify(MainActivity.this, 4, "Activated!", "predict.io activated.");
+                }
+
+                @Override
+                public void onActivationFailed(int error) {
+                    switch (error) {
+                        default:
+                            MainUtils.notify(MainActivity.this, 4, "Activation failed!"
+                                    , "Something went wrong!");
+                            break;
+                        case 401:
+                            MainUtils.notify(MainActivity.this, 4, "Activation failed!"
+                                    , "Please verify your API key!");
+                            break;
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -127,4 +162,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         Log.d(TAG, "onPermissionsDenied:" + requestCode + ":" + perms.size());
     }
+
 }
