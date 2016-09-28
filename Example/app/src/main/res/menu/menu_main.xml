@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="io.predict.example.MainActivity">
+    <item android:id="@+id/action_start"
+        android:title="Start "
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_stop"
+        android:title="Stop  "
+        android:orderInCategory="200"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_status"
+        android:title="Status"
+        android:orderInCategory="300"
+        app:showAsAction="never" />
+</menu>
