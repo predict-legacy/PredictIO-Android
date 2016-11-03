@@ -28,9 +28,7 @@ public class PIOFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         final String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-
         MainUtils.persistFCMToken(this, refreshedToken);
-
         Log.i(MainUtils.TAG, "Refreshed Token: "+refreshedToken);
     }
 }

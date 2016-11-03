@@ -27,10 +27,8 @@ public class PredictIOManager {
         PredictIO predictIO = PredictIO.getInstance(mApplication);
         // this notifies sdk that app is initialised, this is important for the performance of the detection.
         predictIO.setAppOnCreate(mApplication);
-
         // set this to get event callbacks in listener
         predictIO.setListener(mPredictIOListener);
-
         // set this to get event callbacks in broadcast receiver
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(PredictIO.DEPARTED_EVENT);
