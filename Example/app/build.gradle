@@ -15,10 +15,13 @@ android {
         applicationId "io.predict.example"
         minSdkVersion 13
         targetSdkVersion 23
-        versionCode 2016113100
+        versionCode 2016110200
         versionName "3.1.0"
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -29,7 +32,7 @@ android {
 
 repositories {
     maven {
-        url  "http://dl.bintray.com/predict-io/maven"
+        url "http://dl.bintray.com/predict-io/maven"
     }
 }
 
@@ -43,7 +46,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.1.5'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'io.predict:predict-io:3.0.1'
+    compile 'io.predict:predict-io:3.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

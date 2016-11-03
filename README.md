@@ -19,7 +19,7 @@ Look through the [Use Cases](https://github.com/predict-io/PredictIO-Android/wik
 ## Requirements
 * [Sign up](http://www.predict.io/sign-up/) for API key
 * Android 2.3.3 (API 10) or above
-* Google Play services 9.2.1
+* Google Play services 9.4.0
 
 ## Installation
 ### Using Gradle 
