@@ -37,8 +37,6 @@ captures/
 .idea/workspace.xml
 .idea/
 
-# Keystore files
-*.jks
 Example/app/gradlew.bat
 Example/app/gradlew
 Example/app/gradle/wrapper/gradle-wrapper.properties

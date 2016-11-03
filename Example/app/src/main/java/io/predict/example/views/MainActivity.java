@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
-import io.predict.PrecisionMode;
 import io.predict.PredictIO;
 import io.predict.PredictIOStatus;
 import io.predict.example.BuildConfig;
@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements
         //Get PredictIO instance
         final PredictIO predictIO = PredictIO.getInstance(getApplication());
         //Set modes
-        predictIO.setPrecision(PrecisionMode.HIGH);
         predictIO.enableSearchingInPerimeter(true);
 
         //Validate tracker not already running
@@ -228,6 +227,8 @@ public class MainActivity extends AppCompatActivity implements
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        //Persist FCM request token
+        MainUtils.persistFCMToken(this, FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override

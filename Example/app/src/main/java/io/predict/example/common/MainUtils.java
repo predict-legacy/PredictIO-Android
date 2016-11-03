@@ -10,9 +10,11 @@ import android.support.v4.content.LocalBroadcastManager;
 
 import java.text.SimpleDateFormat;
 
+import io.predict.PredictIO;
 import io.predict.example.models.PIOEvent;
 
 public class MainUtils {
+    public static final String TAG = "PredictIO";
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("dd/MM hh:mm a");
 
     public static void notify(Context context, int id, String title, String detail) {
@@ -41,5 +43,10 @@ public class MainUtils {
         Intent intent = new Intent(PIOBroadcastUtils.ACTION_EVENT_UPDATE);
         intent.putExtra(PIOBroadcastUtils.EXTRA_EVENT_UPDATE_IS_LISTENER, isListenerEvent);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+
+    public static void persistFCMToken(Context context, String requestToken) {
+        PredictIO.getInstance(context).setCustomParameter("device_token", requestToken);
+        PredictIO.getInstance(context).setWebhookURL("https://api.parktag.mobi/demo/notifications/send_notification");
     }
 }

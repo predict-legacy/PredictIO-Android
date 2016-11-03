@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "892253429562",
+    "firebase_url": "https://predictio-cordova.firebaseio.com",
+    "project_id": "predictio-cordova",
+    "storage_bucket": "predictio-cordova.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892253429562:android:b3e59939b62da21d",
+        "android_client_info": {
+          "package_name": "io.predict.cordova.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892253429562-bvab4ev6hgncpd6qetpm5mupadm4uluq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVXxrKtkt8oondKofkaODECiO1lTNg4go"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892253429562:android:2933b78474cde3ea",
+        "android_client_info": {
+          "package_name": "io.predict.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892253429562-osu50b3rt36mu60domgjnurgkd604qnf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.predict.example",
+            "certificate_hash": "1B308BC1B541347705955A079A5A54417096618D"
+          }
+        },
+        {
+          "client_id": "892253429562-bvab4ev6hgncpd6qetpm5mupadm4uluq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVXxrKtkt8oondKofkaODECiO1lTNg4go"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892253429562-5mau0j0sol83r59p62fhscem42duuhnn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.predict.cordova.example"
+              }
+            },
+            {
+              "client_id": "892253429562-bvab4ev6hgncpd6qetpm5mupadm4uluq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
