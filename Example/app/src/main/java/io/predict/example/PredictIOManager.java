@@ -89,7 +89,7 @@ public class PredictIOManager {
         }
 
         @Override
-        public void departureCanceled() {
+        public void departureCanceled(PIOTripSegment pioTripSegment) {
             try {
                 onReceiveEvent(true, PredictIO.DEPARTURE_CANCELED_EVENT, null, null);
             } catch (Exception e) {

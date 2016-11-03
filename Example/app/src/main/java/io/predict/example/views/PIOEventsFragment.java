@@ -29,7 +29,7 @@ public class PIOEventsFragment extends Fragment {
     private List<PIOEvent> mEventsList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private PIOEventsAdapter mEventsAdapter;
-    private final boolean isListenerEvents;
+    private boolean isListenerEvents;
     public BroadcastReceiver mEventUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -44,12 +44,17 @@ public class PIOEventsFragment extends Fragment {
         }
     };
 
-    public PIOEventsFragment(boolean isListenerEvents) {
-        this.isListenerEvents = isListenerEvents;
+    public PIOEventsFragment() {
+        this.isListenerEvents = false;
+    }
+
+    public void setListenerEvents(boolean listenerEvents) {
+        isListenerEvents = listenerEvents;
     }
 
     public static PIOEventsFragment newInstance(boolean isListenerEvents) {
-        PIOEventsFragment fragment = new PIOEventsFragment(isListenerEvents);
+        PIOEventsFragment fragment = new PIOEventsFragment();
+        fragment.setListenerEvents(isListenerEvents);
         return fragment;
     }
 
