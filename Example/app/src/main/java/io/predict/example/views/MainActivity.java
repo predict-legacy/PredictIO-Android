@@ -1,5 +1,6 @@
 package io.predict.example.views;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.action_status:
                 checkPredictIOStatus();
+                break;
+            case R.id.action_visiting_zone:
+                Intent intent = new Intent(MainActivity.this, VisitingZonesActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

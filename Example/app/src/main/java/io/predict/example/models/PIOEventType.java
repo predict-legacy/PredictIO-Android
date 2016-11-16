@@ -6,24 +6,30 @@ public enum PIOEventType {
     TRANSPORT_MODE,
     ARRIVAL_SUSPECTED,
     ARRIVED,
-    SEARCHING;
+    SEARCHING,
+    BEING_STATIONARY_AFTER_ARRIVAL,
+    TRAVELED_BY_AIRPLANE;
 
-    public String getName() {
+    public String getName(PIOEvent event) {
         switch (this) {
             default:
                 return "Unknown";
             case DEPARTED:
                 return "Departed";
             case DEPARTURE_CANCELED:
-                return "Departure Cancel";
+                return "Departure cancel";
             case TRANSPORT_MODE:
-                return "Transport: ";
+                return "Transportation Mode: " + event.transportationMode.name();
             case ARRIVAL_SUSPECTED:
-                return "Arrival Suspected";
+                return "Arrival suspected";
             case ARRIVED:
                 return "Arrived";
             case SEARCHING:
                 return "Searching";
+            case BEING_STATIONARY_AFTER_ARRIVAL:
+                return event.stationaryAfterArrival ? "Stationary: Yes" : "Stationary: No";
+            case TRAVELED_BY_AIRPLANE:
+                return "Traveled by airplane";
         }
     }
 }

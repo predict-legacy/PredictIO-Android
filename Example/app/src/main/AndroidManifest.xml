@@ -90,6 +90,7 @@
         </service>
         <!-- [END firebase_service] -->
 
+        <activity android:name=".views.VisitingZonesActivity"></activity>
     </application>
 
 </manifest>

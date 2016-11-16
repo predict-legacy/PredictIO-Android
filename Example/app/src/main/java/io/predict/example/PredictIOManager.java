@@ -32,11 +32,13 @@ public class PredictIOManager {
         // set this to get event callbacks in broadcast receiver
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(PredictIO.DEPARTED_EVENT);
-        intentFilter.addAction(PredictIO.DEPARTURE_CANCELED_EVENT);
-        intentFilter.addAction(PredictIO.ARRIVAL_SUSPECTED_EVENT);
+        intentFilter.addAction(PredictIO.CANCELED_DEPARTURE_EVENT);
+        intentFilter.addAction(PredictIO.SUSPECTED_ARRIVAL_EVENT);
         intentFilter.addAction(PredictIO.ARRIVED_EVENT);
         intentFilter.addAction(PredictIO.SEARCHING_PARKING_EVENT);
-        intentFilter.addAction(PredictIO.TRANSPORTATION_MODE_EVENT);
+        intentFilter.addAction(PredictIO.DETECTED_TRANSPORTATION_MODE_EVENT);
+        intentFilter.addAction(PredictIO.BEING_STATIONARY_AFTER_ARRIVAL_EVENT);
+        intentFilter.addAction(PredictIO.TRAVELED_BY_AIRPLANE_EVENT);
         LocalBroadcastManager.getInstance(mApplication).registerReceiver(mPredictIOEventsReceiver, intentFilter);
     }
 
@@ -69,9 +71,9 @@ public class PredictIOManager {
         }
 
         @Override
-        public void arrivalSuspected(PIOTripSegment tripSegment) {
+        public void suspectedArrival(PIOTripSegment tripSegment) {
             try {
-                onReceiveEvent(true, PredictIO.ARRIVAL_SUSPECTED_EVENT, tripSegment, null);
+                onReceiveEvent(true, PredictIO.SUSPECTED_ARRIVAL_EVENT, tripSegment, null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -87,9 +89,9 @@ public class PredictIOManager {
         }
 
         @Override
-        public void departureCanceled(PIOTripSegment pioTripSegment) {
+        public void canceledDeparture(PIOTripSegment tripSegment) {
             try {
-                onReceiveEvent(true, PredictIO.DEPARTURE_CANCELED_EVENT, null, null);
+                onReceiveEvent(true, PredictIO.CANCELED_DEPARTURE_EVENT, null, null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -100,9 +102,27 @@ public class PredictIOManager {
         }
 
         @Override
-        public void transportationMode(PIOTripSegment tripSegment) {
+        public void detectedTransportationMode(PIOTripSegment tripSegment) {
             try {
-                onReceiveEvent(true, PredictIO.TRANSPORTATION_MODE_EVENT, tripSegment, null);
+                onReceiveEvent(true, PredictIO.DETECTED_TRANSPORTATION_MODE_EVENT, tripSegment, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void beingStationaryAfterArrival(PIOTripSegment tripSegment) {
+            try {
+                onReceiveEvent(true, PredictIO.BEING_STATIONARY_AFTER_ARRIVAL_EVENT, tripSegment, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void traveledByAirplane(PIOTripSegment tripSegment) {
+            try {
+                onReceiveEvent(true, PredictIO.TRAVELED_BY_AIRPLANE_EVENT, tripSegment, null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -146,25 +166,29 @@ public class PredictIOManager {
                     tripSegment.departureLocation.getAccuracy(),
                     tripSegment.departureTime.getTime(),
                     PIOEventType.DEPARTED,
-                    null
+                    tripSegment.transportationMode,
+                    tripSegment.stationaryAfterArrival,
+                    tripSegment.departureZone
                 ));
                 break;
-            case PredictIO.DEPARTURE_CANCELED_EVENT:
+            case PredictIO.CANCELED_DEPARTURE_EVENT:
                 MainUtils.persistEvent(mApplication, isListenerEvent, new PIOEvent (
                     Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE,
                     System.currentTimeMillis(),
                     PIOEventType.DEPARTURE_CANCELED,
-                    null
+                    tripSegment.transportationMode
                 ));
                 break;
-            case PredictIO.ARRIVAL_SUSPECTED_EVENT:
+            case PredictIO.SUSPECTED_ARRIVAL_EVENT:
                 MainUtils.persistEvent(mApplication, isListenerEvent, new PIOEvent (
                     tripSegment.arrivalLocation.getLatitude(),
                     tripSegment.arrivalLocation.getLongitude(),
                     tripSegment.arrivalLocation.getAccuracy(),
                     tripSegment.arrivalTime.getTime(),
                     PIOEventType.ARRIVAL_SUSPECTED,
-                    null
+                    tripSegment.transportationMode,
+                    tripSegment.stationaryAfterArrival,
+                    tripSegment.arrivalZone
                 ));
                 break;
             case PredictIO.ARRIVED_EVENT:
@@ -174,7 +198,9 @@ public class PredictIOManager {
                     tripSegment.arrivalLocation.getAccuracy(),
                     tripSegment.arrivalTime.getTime(),
                     PIOEventType.ARRIVED,
-                    null
+                    tripSegment.transportationMode,
+                    tripSegment.stationaryAfterArrival,
+                    tripSegment.arrivalZone
                 ));
                 break;
             case PredictIO.SEARCHING_PARKING_EVENT:
@@ -184,16 +210,41 @@ public class PredictIOManager {
                     searchingLocation.getAccuracy(),
                     System.currentTimeMillis(),
                     PIOEventType.SEARCHING,
-                    null
+                    null,
+                    false
                 ));
                 break;
-            case PredictIO.TRANSPORTATION_MODE_EVENT:
+            case PredictIO.DETECTED_TRANSPORTATION_MODE_EVENT:
                 MainUtils.persistEvent(mApplication, isListenerEvent, new PIOEvent (
                     tripSegment.departureLocation.getLatitude(),
                     tripSegment.departureLocation.getLongitude(),
                     tripSegment.departureLocation.getAccuracy(),
                     System.currentTimeMillis(),
                     PIOEventType.TRANSPORT_MODE,
+                    tripSegment.transportationMode,
+                    tripSegment.stationaryAfterArrival,
+                    tripSegment.departureZone
+                ));
+                break;
+            case PredictIO.BEING_STATIONARY_AFTER_ARRIVAL_EVENT:
+                MainUtils.persistEvent(mApplication, isListenerEvent, new PIOEvent (
+                    tripSegment.arrivalLocation.getLatitude(),
+                    tripSegment.arrivalLocation.getLongitude(),
+                    tripSegment.arrivalLocation.getAccuracy(),
+                    System.currentTimeMillis(),
+                    PIOEventType.BEING_STATIONARY_AFTER_ARRIVAL,
+                    tripSegment.transportationMode,
+                    tripSegment.stationaryAfterArrival,
+                    tripSegment.arrivalZone
+                ));
+                break;
+            case PredictIO.TRAVELED_BY_AIRPLANE_EVENT:
+                MainUtils.persistEvent(mApplication, isListenerEvent, new PIOEvent (
+                    tripSegment.arrivalLocation.getLatitude(),
+                    tripSegment.arrivalLocation.getLongitude(),
+                    tripSegment.arrivalLocation.getAccuracy(),
+                    tripSegment.arrivalTime.getTime(),
+                    PIOEventType.TRAVELED_BY_AIRPLANE,
                     tripSegment.transportationMode
                 ));
                 break;

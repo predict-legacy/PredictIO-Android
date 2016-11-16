@@ -31,16 +31,7 @@ public class PIOEventsAdapter  extends RecyclerView.Adapter<PIOEventsAdapter.PIO
     public void onBindViewHolder(PIOEventsViewHolder holder, int position) {
         PIOEvent event = mList.get(position);
         try {
-            String log;
-            switch (event.type) {
-                default:
-                    log = event.type.getName();
-                    break;
-                case TRANSPORT_MODE:
-                    log = event.type.getName() + event.transportationMode.name();
-                    break;
-            }
-            holder.mTvLog.setText(log);
+            holder.mTvLog.setText(event.type.getName(event));
             holder.mTvTime.setText(MainUtils.DATE_TIME_FORMAT.format(event.timeStamp));
         } catch (Exception e) {
             e.printStackTrace();
