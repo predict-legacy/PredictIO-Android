@@ -13,7 +13,7 @@ Once you've done a test trip you'll see a list of events detected by the SDK. Ta
 
 ![](https://www.predict.io/GitHub/Location-and-Accuracy-View_Android.jpg)
 
-##### Home/Work zones
+#### Home/Work zones
 You can see your home/work zones after some trips. To check them; go to the Menu in the upper right corner (3 vertical dots) and tap the "Show home/work zones" option.
 
 ![](readme_images/visiting_zones.jpg)
