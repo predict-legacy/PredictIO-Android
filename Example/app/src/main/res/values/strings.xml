@@ -6,7 +6,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="home_zone">Home Zone</string>
     <string name="work_zone">Work Zone</string>
-    <string name="no_zone_detected_message">No zone detected yet.\nPlease check again after some trips.</string>
+    <string name="no_zone_detected_message">No zone information available at this moment.\nPlease check again after some trips.</string>
     <string name="show_home_work_zones">Show home/work zones</string>
     <string name="status">Status</string>
     <string name="start">Start</string>
