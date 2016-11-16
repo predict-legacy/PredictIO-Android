@@ -16,6 +16,8 @@ Once you've done a test trip you'll see a list of events detected by the SDK. Ta
 ##### Home/Work zones
 You can see your home/work zones after some trips. To check them; go to the Menu in the upper right corner (3 vertical dots) and tap the "Show home/work zones" option.
 
+![](readme_images/visiting_zones.png)
+
 ## Running and Testing
 Before you build and run the Example projects, make sure you set your API key in the app's AndroidManifest.xml file.
 
