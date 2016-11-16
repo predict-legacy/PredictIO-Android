@@ -13,6 +13,9 @@ Once you've done a test trip you'll see a list of events detected by the SDK. Ta
 
 ![](https://www.predict.io/GitHub/Location-and-Accuracy-View_Android.jpg)
 
+##### Home/Work zones
+You can see your home/work zones after some trips. To check them; go to the Menu in the upper right corner (3 vertical dots) and tap the "Show home/work zones" option.
+
 ## Running and Testing
 Before you build and run the Example projects, make sure you set your API key in the app's AndroidManifest.xml file.
 
@@ -23,4 +26,4 @@ Our Android SDK relies on sensors data to predict each event. For this reason it
 #### How to test using an Android device
 Start the Example App on your Android phone, put it in your pocket or place at the dashboard. Get to your vehicle and start driving, you should get the departure event on the App in few minutes. Just drive around and then park your vehicle. After predict.io validates your trip i.e. distance travelled and duration, it will send you an arrival event.
 
-Make sure that the SDK is in an active and working state before going on a test trip. To check the status; go to the Menu in the upper right corner (3 vertical dots) and check the "Status" option.
+Make sure that the SDK is in an active and working state before going on a test trip. To check the status; go to the Menu in the upper right corner (3 vertical dots) and tap the "Status" option.
