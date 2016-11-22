@@ -31,6 +31,9 @@ If you don't use Gradle, you can manually add predict.io lib to your Android pro
 ### Example
 Add your SDK API key in manifest file of sample project and run the project for quick demo.
 
+### Demo App
+If you want to see the SDK working live without writing any code, check out the predict.io [Demo App] (https://play.google.com/store/apps/details?id=io.predict.demo) available in the Google Play Store.
+
 ## API Documentation
 For a complete reference of the API, please check out our [API documentation and usage guide](https://github.com/predict-io/PredictIO-Android/wiki/API-Documentation-&-Usage-Guide).  
 
