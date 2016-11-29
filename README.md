@@ -4,14 +4,24 @@ predict.io offers mobile developers a battery-optimized SDK to get normalized se
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
 ## Features
-##### Arrival 
-Detects that a user just arrived at the destination. 
 
-##### Departure
-Detects that user just started their journey.
+##### Departure Detection
+Detects when a user is starting a trip.
+
+##### Arrival Detection
+Detects that a user just arrived at a destination.
 
 ##### Transport Mode
-Distinguish car and non-car trips.
+Detects a transportation mode (car vs. non-car).
+
+##### Home & Work Zone Detection
+Detects the frequently visited areas of your users.
+
+##### Flight Trip Detection
+Detects when a user arrives after air travel.
+
+##### Backend Integration
+Send all detected events to your own backend using webhooks.
 
 ##### Use Cases
 Look through the [Use Cases](https://github.com/predict-io/PredictIO-Android/wiki/Use-Cases) where this SDK can be used.
