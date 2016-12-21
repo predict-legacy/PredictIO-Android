@@ -91,7 +91,7 @@ public class PredictIOManager {
         @Override
         public void canceledDeparture(PIOTripSegment tripSegment) {
             try {
-                onReceiveEvent(true, PredictIO.CANCELED_DEPARTURE_EVENT, null, null);
+                onReceiveEvent(true, PredictIO.CANCELED_DEPARTURE_EVENT, tripSegment, null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
