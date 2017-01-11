@@ -15,8 +15,8 @@ android {
         applicationId "io.predict.example"
         minSdkVersion 13
         targetSdkVersion 23
-        versionCode 2016111500
-        versionName "3.2.0"
+        versionCode 2017011100
+        versionName "3.2.1"
     }
     buildTypes {
         debug {
