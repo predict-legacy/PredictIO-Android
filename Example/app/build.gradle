@@ -46,7 +46,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.1.5'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'io.predict:predict-io:3.2.0'
+    compile 'io.predict:predict-io:3.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
