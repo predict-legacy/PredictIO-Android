@@ -15,8 +15,8 @@ android {
         applicationId "io.predict.example"
         minSdkVersion 13
         targetSdkVersion 23
-        versionCode 2017011100
-        versionName "4.0.0-beta.1"
+        versionCode 2017022100
+        versionName "4.0.0"
     }
     buildTypes {
         debug {
@@ -46,7 +46,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.1.5'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'io.predict:predict-io:4.0.0-beta.1'
+    compile 'io.predict:predict-io:4.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
