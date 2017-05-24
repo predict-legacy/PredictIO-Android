@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     signingConfigs {
@@ -9,14 +19,14 @@ android {
             storePassword 'predictio'
         }
     }
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "io.predict.example"
-        minSdkVersion 13
-        targetSdkVersion 23
-        versionCode 2017022100
-        versionName "4.0.0"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 2017052100
+        versionName "4.1.1"
     }
     buildTypes {
         debug {
@@ -34,19 +44,23 @@ repositories {
     maven {
         url "http://dl.bintray.com/predict-io/maven"
     }
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //Google EasyPermissions Lib, Ref: https://github.com/googlesamples/easypermissions
-    compile 'com.google.android.gms:play-services-location:9.4.0'
-    compile 'com.google.android.gms:play-services-base:9.4.0'
-    compile 'com.google.android.gms:play-services-maps:9.4.0'
-    compile 'com.google.firebase:firebase-messaging:9.4.0'
+    compile 'com.google.android.gms:play-services-location:10.2.6'
+    compile 'com.google.android.gms:play-services-base:10.2.6'
+    compile 'com.google.android.gms:play-services-maps:10.2.6'
+    compile 'com.google.firebase:firebase-messaging:10.2.1'
     compile 'pub.devrel:easypermissions:0.1.5'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'io.predict:predict-io:4.0.0'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'io.predict:predict-io:4.1.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+        transitive = true;
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
