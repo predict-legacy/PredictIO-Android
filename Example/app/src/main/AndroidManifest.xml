@@ -92,6 +92,9 @@
         <!-- [END firebase_service] -->
 
         <activity android:name=".views.VisitingZonesActivity" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="709f89668fb34a6470786626b72541f0bdec4fe3" />
     </application>
 
 </manifest>
