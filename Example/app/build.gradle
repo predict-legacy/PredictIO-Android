@@ -57,7 +57,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.1.5'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-    compile 'io.predict:predict-io:4.1.1'
+    compile 'io.predict:predict-io:4.3.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
     }
