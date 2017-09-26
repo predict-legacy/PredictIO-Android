@@ -27,7 +27,7 @@ allprojects {
 dependencies {
     compile 'com.google.android.gms:play-services-location:11.2.0'
     compile 'com.google.android.gms:play-services-base:11.2.0'
-    compile 'io.predict:predict-io:4.9.0'
+    compile 'io.predict:predict-io:4.3.0'
 }
 ```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.2.0, otherwise there is a high possibility of getting errors.
@@ -63,8 +63,8 @@ Please follow these steps in order to integrate predict.io in your project.
 - Add this to your app build.gradle:
 ```gradle
 dependencies {
-    compile 'com.google.android.gms:play-services-location:11.2.0'
-    compile 'com.google.android.gms:play-services-base:11.2.0'
+    compile 'com.google.android.gms:play-services-location:11.4.0'
+    compile 'com.google.android.gms:play-services-base:11.4.0'
 }
 ```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.2.0, otherwise there is a high possibility of getting errors.
