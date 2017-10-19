@@ -49,7 +49,7 @@ Google Play services version under Application tag in manifest i.e.
 Permission tags
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -87,19 +87,14 @@ Google Play services version under Application tag in manifest i.e.
 Permission tags
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 ### Example
 ```
 PredictIo.start( object : PredictIo.Companion.PredictIoCallback{
-                override fun success() {
-                    print("Successfully started PredictIO SDK!")
-                }
-
                 override fun error(error: PredictIo.PredictIOError) {
                     when(error){
                         PredictIo.PredictIOError.invalidKey -> {
@@ -107,6 +102,15 @@ PredictIo.start( object : PredictIo.Companion.PredictIoCallback{
                         }
                         PredictIo.PredictIOError.killSwitch -> {
                             // Kill switch has been enabled to stop the SDK
+                        }
+                        PredictIo.PredictIOError.wifiDisabled -> {
+                            // Wifi is disabled
+                        }
+                        PredictIo.PredictIOError.locationPermission -> {
+                            // Location permission is not granted
+                        }
+                        else -> {
+                            // SDK started without any error
                         }
                     }
                 }
