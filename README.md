@@ -32,7 +32,7 @@ dependencies {
 ```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.2.0, otherwise there is a high possibility of getting errors.
 
-- Add following tags in **AndroidManifest.xml**  
+- Add following tags in **AndroidManifest.xml** under *Application* tag 
 
 **YOUR_API_KEY** provided with meta-data tag  
 ```xml
@@ -40,7 +40,7 @@ dependencies {
             android:name="io.predict.sdk.API_KEY"
             android:value="YOUR_API_KEY" />
 ```
-Google Play services version under Application tag in manifest i.e.
+Google Play services version
 ```xml
 <meta-data
             android:name="com.google.android.gms.version"
@@ -92,9 +92,22 @@ Permission tags
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
-### Example
+
+## Intialize the SDK
+Add the following code in your *Application* class inside *OnCreate()* method
 ```
-PredictIo.start( object : PredictIo.Companion.PredictIoCallback{
+        //Java
+        PredictIo.Companion.init(this);
+        // Kotlin
+        PredictIo.init(context =this)
+
+```
+
+## Start SDK 
+Add the following code to start the SDK
+```
+        // Kotlin
+        PredictIo.start(object : PredictIoCallback {
                 override fun error(error: PredictIo.PredictIOError) {
                     when(error){
                         PredictIo.PredictIOError.invalidKey -> {
@@ -115,8 +128,27 @@ PredictIo.start( object : PredictIo.Companion.PredictIoCallback{
                     }
                 }
             })
+            
+            //Java
+            PredictIo.Companion.start(new PredictIoCallback() {
+            @Override
+            public void error(PredictIo.PredictIOError predictIOError) {
+                switch (predictIOError) {
+                    case invalidKey:
+                        // Your API key is invalid (incorrect or deactivated)
+                    case killSwitch:
+                        // Kill switch has been enabled to stop the SDK
+                    case wifiDisabled:
+                        // Wifi is disabled
+                    case locationPermission:
+                        // Location permission is not granted
+                    default:
+                        // SDK started without any error
+                }
+            }
+        });
+           
 ```
-
 ## Communication 
 If you need help, visit our [Help Center] (https://support.predict.io)
 
