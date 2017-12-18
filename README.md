@@ -96,57 +96,57 @@ Permission tags
 ## Intialize the SDK
 Add the following code in your *Application* class inside *OnCreate()* method
 ```
-        //Java
-        PredictIo.Companion.init(this);
-        // Kotlin
-        PredictIo.init(context =this)
+//Java
+PredictIo.Companion.init(this);
+// Kotlin
+PredictIo.init(context = this)
 
 ```
 
 ## Start SDK 
 Add the following code to start the SDK
-```
-        // Kotlin
-        PredictIo.start(object : PredictIoCallback {
-                override fun error(error: PredictIo.PredictIOError) {
-                    when(error){
-                        PredictIo.PredictIOError.invalidKey -> {
-                            // Your API key is invalid (incorrect or deactivated)
-                        }
-                        PredictIo.PredictIOError.killSwitch -> {
-                            // Kill switch has been enabled to stop the SDK
-                        }
-                        PredictIo.PredictIOError.wifiDisabled -> {
-                            // Wifi is disabled
-                        }
-                        PredictIo.PredictIOError.locationPermission -> {
-                            // Location permission is not granted
-                        }
-                        else -> {
-                            // SDK started without any error
-                        }
-                    }
+```kotlin
+// Kotlin
+PredictIo.start(object : PredictIoCallback {
+        override fun error(error: PredictIo.PredictIOError) {
+            when(error){
+                PredictIo.PredictIOError.invalidKey -> {
+                    // Your API key is invalid (incorrect or deactivated)
                 }
-            })
-            
-            //Java
-            PredictIo.Companion.start(new PredictIoCallback() {
-            @Override
-            public void error(PredictIo.PredictIOError predictIOError) {
-                switch (predictIOError) {
-                    case invalidKey:
-                        // Your API key is invalid (incorrect or deactivated)
-                    case killSwitch:
-                        // Kill switch has been enabled to stop the SDK
-                    case wifiDisabled:
-                        // Wifi is disabled
-                    case locationPermission:
-                        // Location permission is not granted
-                    default:
-                        // SDK started without any error
+                PredictIo.PredictIOError.killSwitch -> {
+                    // Kill switch has been enabled to stop the SDK
+                }
+                PredictIo.PredictIOError.wifiDisabled -> {
+                    // Wifi is disabled
+                }
+                PredictIo.PredictIOError.locationPermission -> {
+                    // Location permission is not granted
+                }
+                else -> {
+                    // SDK started without any error
                 }
             }
-        });
+        }
+    })
+
+    //Java
+    PredictIo.Companion.start(new PredictIoCallback() {
+    @Override
+    public void error(PredictIo.PredictIOError predictIOError) {
+        switch (predictIOError) {
+            case invalidKey:
+                // Your API key is invalid (incorrect or deactivated)
+            case killSwitch:
+                // Kill switch has been enabled to stop the SDK
+            case wifiDisabled:
+                // Wifi is disabled
+            case locationPermission:
+                // Location permission is not granted
+            default:
+                // SDK started without any error
+        }
+    }
+});
            
 ```
 ## Communication 
