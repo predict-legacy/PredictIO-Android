@@ -108,18 +108,18 @@ Add the following code to start the SDK
 ```kotlin
 // Kotlin
 PredictIo.start(object : PredictIoCallback {
-        override fun error(error: PredictIo.PredictIOError) {
+        override fun error(error: PredictIOError) {
             when(error){
                 PredictIo.PredictIOError.invalidKey -> {
                     // Your API key is invalid (incorrect or deactivated)
                 }
-                PredictIo.PredictIOError.killSwitch -> {
+                PredictIOError.killSwitch -> {
                     // Kill switch has been enabled to stop the SDK
                 }
-                PredictIo.PredictIOError.wifiDisabled -> {
+                PredictIOError.wifiDisabled -> {
                     // Wifi is disabled
                 }
-                PredictIo.PredictIOError.locationPermission -> {
+                PredictIOError.locationPermission -> {
                     // Location permission is not granted
                 }
                 else -> {
@@ -129,10 +129,10 @@ PredictIo.start(object : PredictIoCallback {
         }
     })
 
-    //Java
-    PredictIo.Companion.start(new PredictIoCallback() {
+//Java
+PredictIo.Companion.start(new PredictIoCallback() {
     @Override
-    public void error(PredictIo.PredictIOError predictIOError) {
+    public void error(PredictIOError predictIOError) {
         switch (predictIOError) {
             case invalidKey:
                 // Your API key is invalid (incorrect or deactivated)
