@@ -110,7 +110,7 @@ Add the following code to start the SDK
 PredictIo.start(object : PredictIoCallback {
         override fun error(error: PredictIOError) {
             when(error){
-                PredictIo.PredictIOError.invalidKey -> {
+                PredictIOError.invalidKey -> {
                     // Your API key is invalid (incorrect or deactivated)
                 }
                 PredictIOError.killSwitch -> {
