@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Set custom Parameters
+        //Example of setting custom Parameters -- optional
         PredictIo.setCustomParameter(mapOf(Pair("Test", "SDK")))
 
         if (EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
