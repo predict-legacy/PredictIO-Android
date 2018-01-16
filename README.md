@@ -25,14 +25,14 @@ allprojects {
 - Add this to your app build.gradle:
 ```gradle
 dependencies {
-    compile 'com.google.android.gms:play-services-location:11.2.0'
-    compile 'com.google.android.gms:play-services-base:11.2.0'
-    compile 'io.predict:predict-io:5.0.9'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-base:11.8.0'
+    compile 'io.predict:predict-io:5.0.11'
 }
 ```
->  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.2.0, otherwise there is a high possibility of getting errors.
+>  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
 
-- Add following tags in **AndroidManifest.xml** under *Application* tag 
+- Add following tags in **AndroidManifest.xml** under **Application** tag 
 
 **YOUR_API_KEY** provided with meta-data tag  
 ```xml
@@ -63,14 +63,14 @@ Please follow these steps in order to integrate predict.io in your project.
 - Add this to your app build.gradle:
 ```gradle
 dependencies {
-    compile 'com.google.android.gms:play-services-location:11.4.0'
-    compile 'com.google.android.gms:play-services-base:11.4.0'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-base:11.8.0'
 }
 ```
->  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.2.0, otherwise there is a high possibility of getting errors.
+>  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
 
 
-- Add following tags in **AndroidManifest.xml**  
+- Add following tags in **AndroidManifest.xml** under **Application** tag 
 
 **YOUR_API_KEY** provided with meta-data tag  
 ```xml
@@ -93,20 +93,20 @@ Permission tags
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 
-## Intialize the SDK
+### Intialize the SDK
 Add the following code in your *Application* class inside *OnCreate()* method
 ```
 //Java
 PredictIo.Companion.init(this);
-// Kotlin
+//Kotlin
 PredictIo.init(context = this)
 
 ```
 
-## Start SDK 
-Add the following code to start the SDK
-```kotlin
-// Kotlin
+### Start SDK 
+After getting location permission, start the SDK using following code
+```
+//Kotlin
 PredictIo.start(object : PredictIoCallback {
         override fun error(error: PredictIOError) {
             when(error){
