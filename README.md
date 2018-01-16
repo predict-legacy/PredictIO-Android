@@ -1,58 +1,154 @@
 # PredictIO-Android
-predict.io offers mobile developers a battery-optimized SDK to get normalized sensor results. Available for iOS and Android. It gives you real-time updates when a user starts or ends a journey. With this trigger come contextual details for the mode of transportation (car vs. non-car).
+A battery-optimized SDK for iOS to get real-time updates with context information when a user starts or ends a journey.
 
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
-## Features
-
-##### Departure Detection
-Detects when a user is starting a trip.
-
-##### Arrival Detection
-Detects that a user just arrived at a destination.
-
-##### Transport Mode
-Detects a transportation mode (car vs. non-car).
-
-##### Home & Work Zone Detection
-Detects the frequently visited areas of your users.
-
-##### Flight Trip Detection
-Detects when a user arrives after air travel.
-
-##### Backend Integration
-Send all detected events to your own backend using webhooks.
-
-##### Use Cases
-Look through the [Use Cases](https://www.predict.io/use-cases/) where this SDK can be used.
-
 ## Requirements
-* [Sign up](http://www.predict.io/service/registration/?level=1) for API key
-* Android 2.3.3 (API 10) or above
-* Google Play services 9.4.0
+* [Sign up](http://www.predict.io/sign-up/) for API key
+* Android 4.0.3 (API 15) or above
+* Google Play services 9.4.0 or above
 
 ## Installation
 ### Using Gradle 
-Gradle is a dependency manager for Android projects, check the [Gradle integration](https://github.com/predict-io/PredictIO-Android/wiki/Gradle-Integration-Guide) of predict.io guide for more details.
+#### Integration Steps
+Please follow these steps in order to integrate predict.io in your project.
 
+In order to use the library (Gradle dependency)
+- Add the following to your project level build.gradle:
+```gradle
+allprojects {
+    repositories {
+        maven { url 'https://dl.bintray.com/predict-io/maven/' }
+    }
+}
+```
+- Add this to your app build.gradle:
+```gradle
+dependencies {
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-base:11.8.0'
+    compile 'io.predict:predict-io:5.0.11'
+}
+```
+>  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
+
+- Add following tags in **AndroidManifest.xml** under **Application** tag 
+
+**YOUR_API_KEY** provided with meta-data tag  
+```xml
+<meta-data
+            android:name="io.predict.sdk.API_KEY"
+            android:value="YOUR_API_KEY" />
+```
+Google Play services version
+```xml
+<meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+```
+Permission tags
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
 ### If not using Gradle
-If you don't use Gradle, you can manually add predict.io lib to your Android project, check the [Manual integration](https://github.com/predict-io/PredictIO-Android/wiki/Manual-integration-Guide) of predict.io guide for more details.
+#### Manual Integration Steps
+Please follow these steps in order to integrate predict.io in your project.
+- Copy provided [predict.io SDK JAR](https://github.com/predict-io/PredictIO-Android/tree/master/SDK) to your app's libs folder
 
-### Example
-Add your SDK API key in manifest file of sample project and run the project for quick demo.
+- Add this to your app build.gradle:
+```gradle
+dependencies {
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-base:11.8.0'
+}
+```
+>  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
 
-### Demo App
-If you want to see the SDK working live without writing any code, check out the predict.io [Demo App] (https://play.google.com/store/apps/details?id=io.predict.demo) available in the Google Play Store.
 
-## API Documentation
-For a complete reference of the API, please check out our [API documentation and usage guide](https://github.com/predict-io/PredictIO-Android/wiki/API-Documentation-&-Usage-Guide).  
+- Add following tags in **AndroidManifest.xml** under **Application** tag 
 
-## Migration Guide
-If you are upgrading from the ParkTAG SDK v2.2 or lower, please make sure that you update your integration code, so it conforms with the 3.0+ releases. Checkout the [Migration guide](https://github.com/predict-io/PredictIO-Android/wiki/Migration-Guide-to-predict.io-3.0) for more details.
+**YOUR_API_KEY** provided with meta-data tag  
+```xml
+<meta-data
+            android:name="io.predict.sdk.API_KEY"
+            android:value="YOUR_API_KEY" />
+```
+Google Play services version under Application tag in manifest i.e.
+```xml
+<meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+```
+Permission tags
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
 
-## FAQ
-Look through the [FAQ](https://github.com/predict-io/PredictIO-Android/wiki/FAQ) for answers to the most commonly-asked questions about predict.io.
+### Intialize the SDK
+Add the following code in your *Application* class inside *OnCreate()* method
+```
+//Java
+PredictIo.Companion.init(this);
+//Kotlin
+PredictIo.init(context = this)
 
+```
+
+### Start SDK 
+After getting location permission, start the SDK using following code
+```
+//Kotlin
+PredictIo.start(object : PredictIoCallback {
+        override fun error(error: PredictIOError) {
+            when(error){
+                PredictIOError.invalidKey -> {
+                    // Your API key is invalid (incorrect or deactivated)
+                }
+                PredictIOError.killSwitch -> {
+                    // Kill switch has been enabled to stop the SDK
+                }
+                PredictIOError.wifiDisabled -> {
+                    // Wifi is disabled
+                }
+                PredictIOError.locationPermission -> {
+                    // Location permission is not granted
+                }
+                else -> {
+                    // SDK started without any error
+                }
+            }
+        }
+    })
+
+//Java
+PredictIo.Companion.start(new PredictIoCallback() {
+    @Override
+    public void error(PredictIOError predictIOError) {
+        switch (predictIOError) {
+            case invalidKey:
+                // Your API key is invalid (incorrect or deactivated)
+            case killSwitch:
+                // Kill switch has been enabled to stop the SDK
+            case wifiDisabled:
+                // Wifi is disabled
+            case locationPermission:
+                // Location permission is not granted
+            default:
+                // SDK started without any error
+        }
+    }
+});
+           
+```
 ## Communication 
 If you need help, visit our [Help Center] (https://support.predict.io)
 
@@ -60,8 +156,6 @@ If you need help, visit our [Help Center] (https://support.predict.io)
 predict.io, support@predict.io
 
 ## Credits
-### About predict.io
-Our mobile SDK gives you battery friendly background location so you always know where and when a user arrives or departs. No fiddling with geofences. No beacons or NFC needed. It uses the sensors embedded in any modern smartphone. You can embed it in minutes. Rather than spending months fiddling with the Activity APIs yourself, our SDK powers many industry leading Android and iOS apps in mobility, retail, hospitality, lifestyle and banking.
 ### License
 #### Terms of Service 
 Terms of service can be found [here](http://www.predict.io/terms-of-service/).
