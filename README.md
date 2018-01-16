@@ -1,5 +1,5 @@
 # PredictIO-Android
-predict.io offers mobile developers a battery-optimized SDK to get normalized sensor results. Available for iOS and Android. It gives you real-time updates when a user starts or ends a journey. With this trigger come contextual details for the mode of transportation (car vs. non-car).
+A battery-optimized SDK for iOS to get real-time updates with context information when a user starts or ends a journey.
 
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
