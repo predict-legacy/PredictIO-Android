@@ -95,18 +95,22 @@ Permission tags
 
 ### Intialize the SDK
 Add the following code in your *Application* class inside *OnCreate()* method
-```
-//Java
-PredictIo.Companion.init(this);
-//Kotlin
-PredictIo.init(context = this)
 
+**Kotlin**
+```kotlin
+PredictIo.init(context = this)
+```
+
+**Java**
+```java
+PredictIo.Companion.init(this);
 ```
 
 ### Start SDK 
 After getting location permission, start the SDK using following code
-```
-//Kotlin
+
+**Kotlin**
+```kotlin
 PredictIo.start(object : PredictIoCallback {
         override fun error(error: PredictIOError) {
             when(error){
@@ -128,26 +132,37 @@ PredictIo.start(object : PredictIoCallback {
             }
         }
     })
+```
 
-//Java
+**Java**
+```java
 PredictIo.Companion.start(new PredictIoCallback() {
     @Override
     public void error(PredictIOError predictIOError) {
-        switch (predictIOError) {
-            case invalidKey:
-                // Your API key is invalid (incorrect or deactivated)
-            case killSwitch:
-                // Kill switch has been enabled to stop the SDK
-            case wifiDisabled:
-                // Wifi is disabled
-            case locationPermission:
-                // Location permission is not granted
-            default:
-                // SDK started without any error
+        if (predictIOError == null) {
+            // SDK started successfully
+        }
+        else {
+            switch (predictIOError) {
+                case invalidKey:
+                    // Your API key is invalid (incorrect or deactivated)
+                break;
+                
+                case killSwitch:
+                    // Kill switch has been enabled to stop the SDK
+                break;
+
+                case wifiDisabled:
+                    // Wifi is disabled
+                break;
+
+                case locationPermission:
+                    // Location permission is not granted
+                break;
+            }
         }
     }
 });
-           
 ```
 ## Communication 
 If you need help, visit our [Help Center] (https://support.predict.io)
