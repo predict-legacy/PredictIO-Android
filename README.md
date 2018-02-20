@@ -11,6 +11,12 @@ A battery-optimized SDK for iOS to get real-time updates with context informatio
 ## Installation
 ### Using Gradle 
 #### Integration Steps
+If the application is writted in Java, you need to include the following in your dependencies list in your App build.gradle file
+```
+// Note: Jre version should be same to the one you are using in Android Studio.
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21"
+```
+
 Please follow these steps in order to integrate predict.io in your project.
 
 In order to use the library (Gradle dependency)
