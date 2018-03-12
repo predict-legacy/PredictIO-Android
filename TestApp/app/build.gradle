@@ -4,14 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'test'
-            keyPassword 'shahroz'
-            storeFile file('/Users/shahrozali/Desktop/test.jks')
-            storePassword 'shahroz'
-        }
-    }
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
@@ -26,19 +18,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
-    }
-    productFlavors {
     }
 }
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.google.android.gms:play-services-location:11.8.0'
-    implementation 'io.predict:predict-io:5.0.14'
+    implementation 'io.predict:predict-io:5.0.11'
     implementation 'pub.devrel:easypermissions:1.1.2'
     compile 'com.google.android.gms:play-services-base:11.8.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
