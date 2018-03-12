@@ -33,7 +33,7 @@ allprojects {
 dependencies {
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-base:11.8.0'
-    compile 'io.predict:predict-io:5.0.11'
+    compile 'io.predict:predict-io:5.0.14'
 }
 ```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
