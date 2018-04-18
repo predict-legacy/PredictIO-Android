@@ -1,5 +1,5 @@
 # PredictIO-Android
-A battery-optimized SDK for iOS to get real-time updates with context information when a user starts or ends a journey.
+A battery-optimized SDK for android to get real-time updates with context information when a user starts or ends a journey.
 
 [![Download](https://api.bintray.com/packages/predict-io/maven/PredictIO/images/download.svg)](https://bintray.com/predict-io/maven/PredictIO/_latestVersion)
 
@@ -7,6 +7,7 @@ A battery-optimized SDK for iOS to get real-time updates with context informatio
 * [Sign up](http://www.predict.io/sign-up/) for API key
 * Android 4.0.3 (API 15) or above
 * Google Play services 9.4.0 or above
+* `targetSdkVersion 25` and `compileSdkVersion 26`
 
 ## Installation
 ### Using Gradle 
