@@ -171,6 +171,68 @@ PredictIo.Companion.start(new PredictIoCallback() {
     }
 });
 ```
+
+## Events
+
+The predict.io SDK can give you callbacks for the events which are detected for you to integrate with your own app's functionality.
+
+```kotlin
+PredictIo.notify(PredictIOTripEventType.ANY){
+    event: PredictIOTripEvent ->
+    // Do something with event 
+}
+
+```
+```swift
+PredictIo.notify(PredictIOTripEventType.DEPARTURE){
+    event ->
+    // Do something when user has left a location
+}
+```
+
+```java
+PredictIo.Companion.notify(PredictIOTripEventType.ARRIVAL, new Function1<PredictIOTripEvent, Unit>() {
+     @Override
+     public Unit invoke(PredictIOTripEvent predictIOTripEvent) {
+     // Do something when user has arrived to a location
+         return null;
+     }
+});
+```
+## High Power & Low Power
+
+The predict.io SDK comes in two power levels which cater to different requirements of battery consumption and latency of events being detected.
+
+> **NOTE**: Power level won't take effect properly until a fresh app relaunch, it's not a setting which should be toggled at runtime.
+
+**High Power**
+
+* 5% typical battery usage in 24 hour period
+* Events detected within a few minutes
+
+```Kotlin
+PredictIO.start(apiKey: apiKey, powerMode = PowerMode.HIGH_POWER) {
+  error ->
+  // Handled as above
+}
+```
+
+**Low Power**
+
+* Around 1% typical battery usage in 24 hour period
+* Events detected with up to 30 min delay
+
+> **NOTE**: Low power is the default if no value is set for the `powerLevel` parameter.
+
+```java
+PredictIo.Companion.start(new PredictIoCallback() {
+    @Override
+    public void error(@Nullable PredictIOError error) {
+    // Handled as above
+    }
+}, "apiKey", PowerMode.LOW_POWER);
+```
+
 ## Communication 
 If you need help, visit our [Help Center] (https://support.predict.io)
 
