@@ -14,8 +14,8 @@ A battery-optimized SDK for android to get real-time updates with context inform
 #### Integration Steps
 If the application is written in Java, you need to include the following in your *dependencies* list in your App *build.gradle* file
 ```
-// Note: Jre version should be same to the one you are using in Android Studio.
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21"
+// Note: Jdk version should be same to the one you are using in Android Studio.
+compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.21"
 ```
 
 Please follow these steps in order to integrate predict.io in your project.
@@ -34,7 +34,7 @@ allprojects {
 dependencies {
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-base:11.8.0'
-    compile 'io.predict:predict-io:5.0.14'
+    compile 'io.predict:predict-io:5.1.0-beta.1'
 }
 ```
 >  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
