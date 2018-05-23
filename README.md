@@ -183,12 +183,6 @@ PredictIo.notify(PredictIOTripEventType.ANY){
 }
 
 ```
-```swift
-PredictIo.notify(PredictIOTripEventType.DEPARTURE){
-    event ->
-    // Do something when user has left a location
-}
-```
 
 ```java
 PredictIo.Companion.notify(PredictIOTripEventType.ARRIVAL, new Function1<PredictIOTripEvent, Unit>() {
