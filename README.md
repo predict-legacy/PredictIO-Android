@@ -32,12 +32,12 @@ allprojects {
 - Add this to your app build.gradle:
 ```gradle
 dependencies {
+    // 11.8.0 or above
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-base:11.8.0'
-    compile 'io.predict:predict-io:5.1.0-beta.1'
+    compile 'io.predict:predict-io:5.1.0'
 }
 ```
->  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
 
 - Add following tags in **AndroidManifest.xml** under **Application** tag 
 
@@ -62,43 +62,6 @@ Permission tags
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
-### If not using Gradle
-#### Manual Integration Steps
-Please follow these steps in order to integrate predict.io in your project.
-- Copy provided [predict.io SDK JAR](https://github.com/predict-io/PredictIO-Android/tree/master/SDK) to your app's libs folder
-
-- Add this to your app build.gradle:
-```gradle
-dependencies {
-    compile 'com.google.android.gms:play-services-location:11.8.0'
-    compile 'com.google.android.gms:play-services-base:11.8.0'
-}
-```
->  NOTE: If you are using some other libraries of play-service other than the mentioned above, must use of same version i-e 11.8.0, otherwise there is a high possibility of getting errors.
-
-
-- Add following tags in **AndroidManifest.xml** under **Application** tag 
-
-**YOUR_API_KEY** provided with meta-data tag  
-```xml
-<meta-data
-            android:name="io.predict.sdk.API_KEY"
-            android:value="YOUR_API_KEY" />
-```
-Google Play services version under Application tag in manifest i.e.
-```xml
-<meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-```
-Permission tags
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-```
 
 ### Intialize the SDK
 Add the following code in your *Application* class inside *OnCreate()* method
@@ -114,7 +77,8 @@ PredictIo.Companion.init(this);
 ```
 
 ### Start SDK 
-After getting location permission, start the SDK using following code
+After getting location permission, start the SDK using following code. Optional, you can also provide 
+`API_KEY`
 
 **Kotlin**
 ```kotlin
@@ -139,6 +103,14 @@ PredictIo.start(object : PredictIoCallback {
             }
         }
     })
+```
+
+```kotlin
+PredictIo.start(object : PredictIoCallback {
+    override fun error(error: PredictIOError?) {
+    // error handled as aboove
+    }
+}, apiKey = apiKey)
 ```
 
 **Java**
@@ -205,10 +177,11 @@ The predict.io SDK comes in two power levels which cater to different requiremen
 * Events detected within a few minutes
 
 ```Kotlin
-PredictIO.start(apiKey: apiKey, powerMode = PowerMode.HIGH_POWER) {
-  error ->
-  // Handled as above
-}
+PredictIo.start(object : PredictIoCallback {
+    override fun error(error: PredictIOError?) {
+    // error handled as aboove
+    }
+}, powerMode = PowerMode.HIGH_POWER)
 ```
 
 **Low Power**
