@@ -35,7 +35,7 @@ dependencies {
     // 11.8.0 or above
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-base:11.8.0'
-    compile 'io.predict:predict-io:5.1.0'
+    compile 'io.predict:predict-io:5.1.2'
 }
 ```
 
