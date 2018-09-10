@@ -8,6 +8,8 @@ import android.widget.Toast
 import predictio.sdk.PredictIOError
 import predictio.sdk.PredictIo
 import predictio.sdk.protocols.PredictIoCallback
+import predictio.sdk.services.public_imports.PredictIOTripEvent
+import predictio.sdk.services.public_imports.PredictIOTripEventType
 import pub.devrel.easypermissions.EasyPermissions
 
 
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startPredictIoService() {
         //Start SDK
-        PredictIo.Companion.start(object : PredictIoCallback {
+        PredictIo.start(object : PredictIoCallback {
             override fun error(error: PredictIOError?) {
                 when (error) {
                     PredictIOError.invalidKey -> {
@@ -70,6 +72,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        // Listen to events
+        PredictIo.notify(PredictIOTripEventType.ANY){
+            event: PredictIOTripEvent ->
+            // Do something with event
+        }
 
     }
 }
